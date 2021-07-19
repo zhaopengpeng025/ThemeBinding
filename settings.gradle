@@ -1,0 +1,5 @@
+rootProject.name = "ThemeBindDemo"
+include ':app'
+include ':lib-theme-processor'
+include ':lib-theme-binding'
+include ':lib-theme-annotation'

@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+apply from: './nexus_maven.gradle'
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.pateo.theme:theme-annotation:0.0.1'
+    implementation 'com.squareup:javapoet:1.12.1'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

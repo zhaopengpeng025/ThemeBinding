@@ -1,0 +1,27 @@
+apply plugin: 'maven'
+
+def isReleaseBuild() {
+    return !VERSION.toUpperCase().contains("SNAPSHOT")
+}
+
+def getRepositoryUrl() {
+    return isReleaseBuild() ? RELEASE_REPOSITORY_URL : SNAPSHOT_REPOSITORY_URL
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project {
+                name NAME
+                version VERSION
+                artifactId ARTIFACT_ID
+                groupId GROUP_ID
+                packaging 'jar'
+                description DESCRIPTION
+            }
+            repository(url: getRepositoryUrl()) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+        }
+    }
+}
